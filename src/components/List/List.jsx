@@ -9,7 +9,7 @@ import {
   Select,
 } from "@material-ui/core";
 
-import PlaceDetails from '../PlaceDetails/PlaceDetails'
+import PlaceDetails from "../PlaceDetails/PlaceDetails";
 
 import useStyles from "./styles";
 
@@ -19,12 +19,12 @@ const List = () => {
   const [rating, setRating] = useState(0);
 
   const places = [
-    { name: 'best beer'},
-    { name: 'place b'},
-    { name: 'place best'},
-    { name: 'place c'},
-    { name: 'place second best'}
-  ]
+    { name: "best beer" },
+    { name: "place b" },
+    { name: "place best" },
+    { name: "place c" },
+    { name: "place second best" },
+  ];
 
   return (
     <div className={classes.container}>
@@ -48,9 +48,11 @@ const List = () => {
       </FormControl>
       <Grid container spacing={3} className={classes.list}>
         {places?.map((place, idx) => {
-          return (<Grid item key={idx} xs={12}>
-            <PlaceDetails place={place} />
-          </Grid>)
+          return (
+            <Grid item key={idx} xs={12}>
+              <PlaceDetails place={place} />
+            </Grid>
+          );
         })}
       </Grid>
     </div>
