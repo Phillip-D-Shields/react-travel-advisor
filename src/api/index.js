@@ -10,17 +10,17 @@ export const getPlacesData = async (sw, ne) => {
     const {
       data: { data },
     } = await axios.get(URL, {
-        params: {
-          bl_latitude: sw.lat,
-          tr_latitude: ne.lng,
-          bl_longitude: sw.lat,
-          tr_longitude: ne.lng,
-        },
-        headers: {
-          "X-RapidAPI-Key": process.env.RAPID_API_X_KEY ,
-          "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
-        },
-      });
+      params: {
+        bl_latitude: sw.lat,
+        tr_latitude: ne.lat,
+        bl_longitude: sw.lng,
+        tr_longitude: ne.lng,
+      },
+      headers: {
+        "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_X_KEY,
+        "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
+      },
+    });
 
     return data;
   } catch (error) {
