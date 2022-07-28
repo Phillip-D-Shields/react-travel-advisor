@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import PhoneIcon from "@material-ui/icons/Phone";
-import { Rating } from "@material-ui/lab/Rating";
+import Rating from "@material-ui/lab/Rating";
 
 import useStyles from "./styles";
 
@@ -31,10 +31,18 @@ const PlaceDetails = ({ place }) => {
         title={place.name}
       />
       <CardContent>
-        {/* pricing display */}
+        {/* name display */}
         <Typography gutterBottom variant="h5">
           {place.name}
         </Typography>
+        {/* rating display */}
+        <Box display="flex" justifyContent="space-between">
+          <Rating value={Number(place.rating)} readOnly />
+          <Typography gutterBottom variant="subtitle1">
+            out of {place.num_reviews} reviews
+          </Typography>
+        </Box>
+        {/* price level display */}
         <Box display="flex" justifyContent="space-between">
           <Typography variant="subtitle1">price</Typography>
           <Typography gutterBottom variant="subtitle1">
@@ -89,11 +97,22 @@ const PlaceDetails = ({ place }) => {
           </Typography>
         )}
 
-          <CardActions>
-            <Button size='small' color="primary" onClick={() => window.open(place.web_url, '_blank')}>trip advisor</Button>
-            <Button size='small' color="primary" onClick={() => window.open(place.website, '_blank')}>website</Button>
-          </CardActions>
-
+        <CardActions>
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => window.open(place.web_url, "_blank")}
+          >
+            trip advisor
+          </Button>
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => window.open(place.website, "_blank")}
+          >
+            website
+          </Button>
+        </CardActions>
       </CardContent>
     </Card>
   );
