@@ -13,13 +13,25 @@ import PlaceDetails from "../PlaceDetails/PlaceDetails";
 
 import useStyles from "./styles";
 
-const List = ({ places, childClicked, isLoading }) => {
+const List = ({
+  places,
+  childClicked,
+  isLoading,
+  type,
+  setType,
+  rating,
+  setRating,
+}) => {
   const classes = useStyles();
-  const [type, setType] = useState("food");
-  const [rating, setRating] = useState(0);
+
   const [elRefs, setElRefs] = useState([]);
+
+
   useEffect(() => {
-    setElRefs((refs) => Array(places?.length).fill().map((_, i) => refs[i] || createRef()));
+    const refs = Array(places?.length)
+      .fill()
+      .map((_, idx) => elRefs[idx] || createRef());
+    setElRefs(refs);
   }, [places]);
 
   return (
@@ -34,9 +46,9 @@ const List = ({ places, childClicked, isLoading }) => {
           <FormControl className={classes.formControl}>
             <InputLabel>type</InputLabel>
             <Select value={type} onChange={(e) => setType(e.target.value)}>
-              <MenuItem value="food">food</MenuItem>
-              <MenuItem value="shelter">shelter</MenuItem>
-              <MenuItem value="stuff">stuff to do</MenuItem>
+              <MenuItem value="restaurants">food</MenuItem>
+              <MenuItem value="hotels">shelter</MenuItem>
+              <MenuItem value="attractions">stuff to do</MenuItem>
             </Select>
           </FormControl>
           <FormControl className={classes.formControl}>
@@ -49,20 +61,20 @@ const List = ({ places, childClicked, isLoading }) => {
             </Select>
           </FormControl>
 
-      <Grid container spacing={3} className={classes.list}>
-        {places?.map((place, idx) => {
-          return (
-            <Grid item key={idx} xs={12}>
-              <PlaceDetails
-                place={place}
-                selected={Number(childClicked) === idx}
-                refProp={elRefs[idx]}
-              />
-            </Grid>
-          );
-        })}
-      </Grid>
-      </>
+          <Grid container spacing={3} className={classes.list}>
+            {places?.map((place, idx) => {
+              return (
+                <Grid ref={elRefs[idx]} item key={idx} xs={12}>
+                  <PlaceDetails
+                    place={place}
+                    selected={Number(childClicked) === idx}
+                    refProp={elRefs[idx]}
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
+        </>
       )}
     </div>
   );
