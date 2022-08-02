@@ -4,4 +4,4 @@
 
 ## displays useful places in your area
 
-> ### LIVE DEMO (coming soon) 
+> ### [live demo here](https://travel-guru-demo-v1.netlify.app/) 
